@@ -1,0 +1,20 @@
+.F
+
+Failures:
+
+  1) Converting arabic numbers to roman numerals Romans had simple additive numbers converts 1 to an I
+     Failure/Error: expect(convert(1)).to eq('I')
+       
+       expected: "I"
+            got: nil
+       
+       (compared using ==)
+     # spec/converting_arabic_to_roman_numerals.rb:17:in `block (3 levels) in <top (required)>'
+
+Finished in 0.03439 seconds (files took 29.67 seconds to load)
+2 examples, 1 failure
+
+Failed examples:
+
+rspec 'spec/converting_arabic_to_roman_numerals.rb[1:2:1]' # Converting arabic numbers to roman numerals Romans had simple additive numbers converts 1 to an I
+
