@@ -1,6 +1,7 @@
 def convert(arabic)
   result = ''
   numerals = {
+    100 => 'C',
     50 => 'L',
     10 => 'X',
     5 => 'V',
@@ -13,6 +14,12 @@ def convert(arabic)
     while arabic >= a
       result << r
       arabic -= a
+    end
+    numerals.each do |aa, rr|
+      if arabic > aa && arabic == a - aa
+        result << rr << r
+        arabic -= (a + (a - aa))
+      end
     end
   end
   if arabic > 0
@@ -42,8 +49,8 @@ describe "Converting arabic numbers to roman numerals" do
       expect(convert(3)).to eq('III')
     end
 
-    it "converts 4 to an IIII" do
-      expect(convert(4)).to eq('IIII')
+    it "converts 4 to an IV" do
+      expect(convert(4)).to eq('IV')
     end
 
     it "converts 5 to an V" do
@@ -62,8 +69,8 @@ describe "Converting arabic numbers to roman numerals" do
       expect(convert(8)).to eq('VIII')
     end
 
-    it "converts 9 to an VIIII" do
-      expect(convert(9)).to eq('VIIII')
+    it "converts 9 to an IX" do
+      expect(convert(9)).to eq('IX')
     end
 
     it "converts 10 to an X" do
@@ -78,17 +85,31 @@ describe "Converting arabic numbers to roman numerals" do
       expect(convert(15)).to eq('XV')
     end
 
-    it "converts 19 to an XVIIII" do
-      expect(convert(19)).to eq('XVIIII')
+    it "converts 19 to an XIX" do
+      expect(convert(19)).to eq('XIX')
     end
 
     it "converts 20 to an XX" do
       expect(convert(20)).to eq('XX')
     end
 
+    it "converts 40 to an XL" do
+      expect(convert(40)).to eq('XL')
+    end
+
+    it "converts 49 to an IL" do
+      expect(convert(49)).to eq('IL')
+    end
+
     it "converts 50 to an L" do
       expect(convert(50)).to eq('L')
     end
+
+
+    it "converts 99 to an IC" do
+      expect(convert(99)).to eq('IC')
+    end
+
 
 
   end
